@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_infinite_list/src/models/Post.dart';
+import 'package:flutter_infinite_list/src/models/post.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -44,7 +44,7 @@ class PostLoadedState extends PostState {
 
   /// copyWith, чтобы мы могли скопировать экземпляр PostLoaded
   /// и удобно обновить ноль или более свойств
-  PostLoadedState copyWith(List<Post> posts, bool hasReachedMax) =>
+  PostLoadedState copyWith({List<Post> posts, bool hasReachedMax}) =>
       PostLoadedState(
           posts: posts ?? this.posts,
           hasReachedMax: hasReachedMax ?? this.hasReachedMax);
