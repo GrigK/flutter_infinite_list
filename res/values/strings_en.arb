@@ -1,3 +1,7 @@
 {
-  "appName": "Flutter"
+  "appName": "Flutter Infinite Scroll",
+  "titlePosts": "Infinite Scroll",
+
+  "noPosts": "no posts",
+  "failLoadPost": "failed to fetch posts"
 }
