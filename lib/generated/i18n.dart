@@ -21,7 +21,10 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
-  String get appName => "Flutter";
+  String get appName => "Flutter Infinite Scroll";
+  String get failLoadPost => "failed to fetch posts";
+  String get noPosts => "no posts";
+  String get titlePosts => "Infinite Scroll";
 }
 
 class $ru extends S {
@@ -31,7 +34,13 @@ class $ru extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
-  String get appName => "Флаттер";
+  String get noPosts => "пусто";
+  @override
+  String get appName => "Подгружаемый список";
+  @override
+  String get titlePosts => "Список постов";
+  @override
+  String get failLoadPost => "Ошибка загрузки постов";
 }
 
 class $en extends S {
