@@ -34,15 +34,16 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           yield PostLoadedState(posts: posts, hasReachedMax: false);
         } else if (currentState is PostLoadedState) {
           // при последующих вызовах читаем следующие 20 записей
-          final posts = await _fetchPosts(currentState.posts.length, 20);
+          final List<Post> posts = await _fetchPosts(currentState.posts.length, 20);
           // если больше не прочли - отметим это в [hasReachedMax]
           yield posts.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
-              : PostLoadedState(posts: posts, hasReachedMax: false);
+              // будем добавлять к текущему списку постов. Все равно их только 100
+              : PostLoadedState(posts: [...currentState.posts, ...posts], hasReachedMax: false);
         }
-      } catch (_) {
+      } catch (e) {
         // если ошибка загрузки - сообщить об этом
-        yield PostErrorState();
+        yield PostErrorState(e.toString());
       }
     }
   }
@@ -83,7 +84,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
             body: rawPost['body']);
       }).toList();
     } else {
-      throw Exception("error fetching posts");
+      print("error fetching posts: ${response.statusCode}");
+      throw Exception("error fetching posts: ${response.statusCode}");
     }
 
     return ret;

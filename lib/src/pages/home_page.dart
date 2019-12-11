@@ -47,6 +47,12 @@ class _HomePageState extends State<HomePage> {
           title: Text(S.of(context).titlePosts),
           actions: <Widget>[
             IconButton(
+                icon: Icon(Icons.cached),
+                onPressed: () {
+                  _postBloc.add(FetchEvent());
+                  setState(() { });
+                }),
+            IconButton(
                 icon: Icon(Icons.brightness_medium),
                 onPressed: () {
                   // Используем глобальный BLoC (смена темы)
@@ -68,6 +74,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
     if (state is PostErrorState) {
+      print(state.err);
       return Center(
         child: Text(S.of(context).failLoadPost),
       );

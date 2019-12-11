@@ -15,7 +15,12 @@ abstract class PostState extends Equatable {
 class PostUninitializedState extends PostState {}
 
 /// PostError- сообщит слою презентации, что при получении сообщений произошла ошибка
-class PostErrorState extends PostState {}
+class PostErrorState extends PostState {
+  final String err;
+
+  PostErrorState(this.err);
+
+}
 
 /// PostLoaded- скажет на уровне представления, что у него есть контент для рендеринга
 ///     posts- список List<Post> который будем выводить
